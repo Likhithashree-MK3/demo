@@ -1,0 +1,46 @@
+page-stwip {
+
+    span {
+        font-size: 3.3vw;       
+        font-weight: bold;
+    }
+
+    #DivAlertContainer {
+        position: absolute;
+        top: 0px;
+        background: rgba(20, 20, 20, 0.2);
+        width: 100%;
+        left: 0px;
+        height: 100%;
+    }
+     
+    #DivAlertContainer .item-block{
+        min-height: 2.4em !important;
+    }
+    
+    #ResionForPauseContainer {
+        position: relative;
+        top: 1%;
+        width: 66%;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 8px;
+    }
+     
+    #ResionForPauseListContainer {
+        overflow: auto;
+        max-height: 60vh;
+    }
+     
+    .item-image {
+        width: 15px;
+        height: 15px;
+        margin-right: 8px;
+    }
+     
+    .item-md .radio-md[item-left],
+    .item-md .radio-md[item-start] {
+        margin: 11px 18px 10px 4px;
+    }
+
+}

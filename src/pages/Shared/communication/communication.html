@@ -1,0 +1,71 @@
+<ion-header>
+  <page-header></page-header>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-grid>
+    <ion-row align-items-center>
+      <ion-col col-12>
+        <ion-searchbar *ngIf="isAlertOpen" [(ngModel)]="searchText" (ionInput)="filterAlertMessages()"
+          placeholder="Search message"></ion-searchbar>
+        <ion-searchbar *ngIf="isNotificationOpen" [(ngModel)]="searchText" (ionInput)="filterNotificationMessages()"
+          placeholder="Search notification"></ion-searchbar>
+      </ion-col>
+    </ion-row>
+    <ion-row align-items-center>
+      <ion-col col-2>
+        <img src="assets/imgs/Filtered.png" style="height:4.1vh" (click)="FilterClick()">
+      </ion-col>
+      <ion-col style="display: flex;width:auto">
+        <div
+          class="DivFilterLable">
+          {{SelectedFilterName}}
+          <!-- <span style="margin-left:8px;" (click)="RemoveFilteredata(i)">x</span> -->
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="SelectedFilter==6" style="margin: 10px">
+      <ion-col col-5 style="display: flex;">
+        <input type="date" class="CustomeDate" [min]="Last6Month" [max]="TodaysDate" [(ngModel)]="SearchFromDate"
+          style="margin: auto;">
+      </ion-col>
+      <ion-col col-5 style="display: flex;">
+        <input type="date" class="CustomeDate" [min]="Last6Month" [max]="TodaysDate" [(ngModel)]="SearchToDate"
+          style="margin: auto;">
+      </ion-col>
+      <ion-col col-2 style="display: flex;">
+        <ion-icon ios="ios-search" md="md-search" style="margin: auto;font-size: 2em;cursor: pointer;"
+          (click)="SearchClick()"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div style="margin-top: 5vh;margin-bottom: 10vh;">
+    <ion-grid *ngFor="let item of communicationDetails">
+      <div class="communicationmessagerowstyle">
+        <ion-row>
+          <ion-col col-2 text-left>
+            <!-- <ion-icon name="document" style="font-size: 40px; color: #e33239;"></ion-icon> -->
+            <img src="assets/imgs/pdf.png" id="IconMenu" style="width:40px">
+          </ion-col>
+          <ion-col col-10 text-left>{{item.msg}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <hr />
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 text-right><ion-icon name="calendar"></ion-icon> {{item.date}}</ion-col>
+        </ion-row>
+      </div>
+    </ion-grid>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+    <page-footer>
+</page-footer>
+</ion-footer>

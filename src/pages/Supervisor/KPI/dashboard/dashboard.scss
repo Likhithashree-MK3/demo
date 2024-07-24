@@ -1,0 +1,133 @@
+page-dashboard {
+
+    #DivHeaderSup .toolbar-background {
+        background-image: url("../assets/imgs/HeaderBG.png") !important;
+        background-size: 100% 100% !important;
+        background-repeat: no-repeat !important;
+    }
+
+    #IconMenu {
+        margin: auto;
+        cursor: pointer;
+        font-size: 2.3em;
+        color: white;
+    }
+
+    .ClsCard {
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .ClsJcspan {
+        font-size: 20px;
+        color: #000080;
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+    }
+
+    meter::-webkit-meter-bar {
+        background: #e6e6e9;
+        border: none;
+    }
+
+    meter::-webkit-meter-optimum-value {
+        background: black;
+    }
+
+    .Clsred {
+        meter::-webkit-meter-optimum-value {
+            background: red;
+        }
+    }
+
+    .Clsgreen {
+        meter::-webkit-meter-optimum-value {
+            background: green;
+        }
+    }
+
+    .Spndots {
+        position: absolute;
+        display: inline-block;
+        border: 1px solid red;
+        height: 10px;
+        width: 10px;
+        border-radius: 100%;
+        right: 15px;
+        background: red;
+        top: 10px;
+    }
+
+    .CustomeDate {
+        border: 1px solid lightgray;
+        padding: 5px;
+        border-radius: 3px;
+        width: 90%;
+        box-shadow: 1px 1px 2px 0px gray;
+    }
+
+    meter {
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    #MeaterUtilization::-moz-meter-bar {
+        background: #01ac66;
+    }
+
+    #MeaterRealization::-moz-meter-bar {
+        background: #ff0000;
+    }
+
+    #MeaterProductivity::-moz-meter-bar {
+        background: #000000;
+    }
+
+    .CardTechDashboard {
+        width: 82%;
+        height: 80%;
+        padding: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .SpnTechCount {
+        color: #000080;
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center;
+        font-size: 5vw;
+    }
+
+    .SpnTechStatus {
+        text-align: center;
+        font-weight: 500;
+        font-size: 4.1vw;
+    }
+
+    .SpnDashboardLable {
+        margin-left: 8px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+
+    .SpnJCStatusLable {
+        font-size: 14px;
+        margin-top: 10px;
+        color: #3E3E3E;
+        font-weight: 500;
+        display: block;
+    }
+
+    .DivJCStatus {
+        height: 95%;
+        width: 90%;
+        margin: 5px;
+        padding: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+}

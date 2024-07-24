@@ -1,0 +1,278 @@
+<ion-header id="DivHeaderSup">
+  <ion-navbar color="themered">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-1 style="display: flex;">
+          <img src="assets/imgs/menus.png" id="IconMenu" menuToggle>
+        </ion-col>
+        <ion-col col-10 style="display: flex;">
+          <ion-title>Welcome {{global.UserDetails[0].Name}}</ion-title>
+        </ion-col>
+        <ion-col col-1 style="display: flex;" (click)="NotificationClick()">
+          <img src="assets/imgs/bell.png" id="IconMenu" style="width:25px">
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-1></ion-col>
+        <ion-col col-11 style="margin-top: -10px;color:#fff;left:12px">
+          <sub class="SpnSub">{{global.UserDetails[0].Designation}}</sub>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color: #fff;">
+
+  <ion-grid>
+    <ion-row style="padding: 10px;">
+      <ion-col col-2>
+        <img src="assets/imgs/Filtered.png" style="height:4.1vh" (click)="FilterClick()">
+      </ion-col>
+      <ion-col style="display: flex;width:auto">
+        <div class="DivFilterLable">
+          {{SelectedFilterName}}
+          <!-- <span style="margin-left:8px;" (click)="RemoveFilteredata(i)">x</span> -->
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="SelectedFilter==6">
+      <ion-col col-5 style="display: flex;">
+        <input type="date" class="CustomeDate" [min]="Last6Month" [max]="TodaysDate" [(ngModel)]="SearchFromDate"
+          style="margin: auto;">
+      </ion-col>
+      <ion-col col-5 style="display: flex;">
+        <input type="date" class="CustomeDate" [min]="Last6Month" [max]="TodaysDate" [(ngModel)]="SearchToDate"
+          style="margin: auto;">
+      </ion-col>
+      <ion-col col-2 style="display: flex;">
+        <ion-icon ios="ios-search" md="md-search" style="margin: auto;font-size: 2em;cursor: pointer;"
+          (click)="SearchClick()"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- OverallJC status -->
+  <ion-card class="ClsCard" (click)="UtilizationClick()">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-2>
+          <img src="assets/imgs/Uti.png" style="width:40px;margin-bottom: 5px;">
+        </ion-col>
+        <ion-col col-8>
+          Utilization <span style="color:#000;font-weight: 600;">{{DashboardDetails.UtilizationPerc}}%</span>
+        </ion-col>
+        <ion-col col-1>
+          <img src="assets/imgs/decrease.png" *ngIf="DashboardDetails.UtilizationDiff<0"
+            style="width:8px;float:inline-end;margin-top: 0.4vh;height: 12px;">
+          <img src="assets/imgs/increase.png" *ngIf="DashboardDetails.UtilizationDiff>0"
+            style="width:12px;float:inline-end;margin-top: 0.4vh;">
+        </ion-col>
+        <ion-col col-1>
+          <span [style.color]="(DashboardDetails.UtilizationDiff<0)?'red':'green'">{{DashboardDetails.UtilizationDiff}}
+          </span>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top:-3vh">
+        <ion-col col-2></ion-col>
+        <ion-col>
+          <meter id="MeaterUtilization" value="{{DashboardDetails.UtilizationPercRange}}"></meter>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card class="ClsCard" (click)="RealizationClick()">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-2>
+          <img src="assets/imgs/Real.png" style="width:40px;margin-bottom: 5px;">
+        </ion-col>
+        <ion-col col-8>
+          Realization <span style="color:#000;font-weight: 600;">{{DashboardDetails.RealizationPerc}}%</span>
+        </ion-col>
+        <ion-col col-1>
+          <img src="assets/imgs/decrease.png" *ngIf="DashboardDetails.RealizationDiff<0"
+            style="width:8px;float:inline-end;margin-top: 0.4vh;height: 12px">
+          <img src="assets/imgs/increase.png" *ngIf="DashboardDetails.RealizationDiff>0"
+            style="width:12px;float:inline-end;margin-top: 0.4vh;">
+        </ion-col>
+        <ion-col col-1>
+          <span
+            [style.color]="(DashboardDetails.RealizationDiff<0)?'red':'green'">{{DashboardDetails.RealizationDiff}}</span>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top:-3vh">
+        <ion-col col-2></ion-col>
+        <ion-col>
+          <meter id="MeaterRealization" value="{{DashboardDetails.RealizationPercRange}}"></meter>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card class="ClsCard" (click)="ProductivityClick()" *ngIf="global.IsManager">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-2>
+          <img src="assets/imgs/Prod.png" style="width:40px;margin-bottom: 5px;">
+        </ion-col>
+        <ion-col col-8>
+          Productivity <span style="color:#000;font-weight: 600;">{{DashboardDetails.ProductivityPerc}}%</span>
+        </ion-col>
+        <ion-col col-1>
+          <img src="assets/imgs/decrease.png" *ngIf="DashboardDetails.ProductivityDiff<0"
+            style="width:8px;float:inline-end;margin-top: 0.4vh;height: 12px">
+          <img src="assets/imgs/increase.png" *ngIf="DashboardDetails.ProductivityDiff>0"
+            style="width:12px;float:inline-end;margin-top: 0.4vh;">
+        </ion-col>
+        <ion-col col-1>
+          <span
+            [style.color]="(DashboardDetails.ProductivityDiff<0)?'red':'green'">{{DashboardDetails.ProductivityDiff}}</span>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top:-3vh">
+        <ion-col col-2></ion-col>
+        <ion-col>
+          <meter id="MeaterProductivity" value="{{DashboardDetails.ProductivityPercRange}}"></meter>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <!--Technician Dashboard -->
+  <ion-card style="border-radius: 5px;" *ngIf="!global.IsManager">
+    <ion-card-content style="padding: 10px 5px;">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <h6 class="SpnDashboardLable">Technician Dashboard </h6>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-3 style="display: flex;">
+            <ion-card class="CardTechDashboard" style="background: #DFF2CB" (click)="TechAVLClick()">
+              <div class="SpnTechStatus">AVL</div>
+              <div class="SpnTechCount">
+                {{DashboardDetails.TechAvl}}
+              </div>
+            </ion-card>
+          </ion-col>
+          <ion-col col-3 style="display: flex;">
+            <ion-card class="CardTechDashboard" style="background: #FEEEB3" (click)="TechWIPClick()">
+              <div class="SpnTechStatus">WIP</div>
+              <div class="SpnTechCount">
+                {{DashboardDetails.TechWIP}}
+              </div>
+            </ion-card>
+          </ion-col>
+          <ion-col col-3 style="display: flex;">
+            <ion-card class="CardTechDashboard" style="background: #B3E8FD" (click)="TechYTSClick()">
+              <div class="SpnTechStatus">YTS</div>
+              <div class="SpnTechCount">
+                {{DashboardDetails.TechYTS}}
+              </div>
+            </ion-card>
+          </ion-col>
+          <ion-col col-3 style="display: flex;">
+            <ion-card class="CardTechDashboard" style="background: #FCB4B4" (click)="TechPAUSEClick()">
+              <div class="SpnTechStatus">PAUSE</div>
+              <div class="SpnTechCount">
+                {{DashboardDetails.TechPAUSE}}
+              </div>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- JC Status -->
+  <ion-card class="ClsCard">
+
+    <h6 class="SpnDashboardLable">Job Card Status {{DashboardDetails.TotalJobs}}</h6>
+
+    <ion-grid style="text-align: center;">
+
+      <ion-row>
+
+        <ion-col col-6 (click)="JcBtnClick('Pending')">
+          <div class="DivJCStatus" style="background: #e7eaf0;">
+            <span class="Spndots" *ngIf="DashboardDetails.IsPFACntExceed"></span>
+            <span class="ClsJcspan">{{DashboardDetails.PFA}}</span>
+            <span class="SpnJCStatusLable">Pending for Allocation</span>
+          </div>
+        </ion-col>
+
+        <ion-col col-6 (click)="JcBtnClick('ETD')">
+          <div class="DivJCStatus" style="background: #feeeb3;">
+            <span class="Spndots" *ngIf="DashboardDetails.IsETDExcCntExceed"></span>
+            <span class="ClsJcspan">{{DashboardDetails.ETDExceeded}}</span>
+            <span class="SpnJCStatusLable">ETD Exceeded</span>
+          </div>
+        </ion-col>
+
+      </ion-row>
+
+      <ion-row style="margin-top: 3%;">
+
+        <ion-col col-4 (click)="JcBtnClick('AllocatedYTS')">
+          <div class="DivJCStatus" style="background: #B3E8FD;">
+            <span class="Spndots" *ngIf="DashboardDetails.IsAllocatedCntExceed"></span>
+            <span class="ClsJcspan">{{DashboardDetails.AllocatedYTS}}</span>
+            <span class="SpnJCStatusLable">Allocated YTS</span>
+          </div>
+        </ion-col>
+
+        <ion-col col-4 (click)="JcBtnClick('WIP')">
+          <div class="DivJCStatus" style="background: #FFF5D7;">
+            <span class="ClsJcspan">{{DashboardDetails.WIP}}</span>
+            <span class="SpnJCStatusLable">Work in Progress</span>
+          </div>
+        </ion-col>
+
+        <ion-col col-4 (click)="JcBtnClick('Hold')">
+          <div class="DivJCStatus" style="background: #FCB4B4;">
+            <span class="Spndots" *ngIf="DashboardDetails.IsHoldCntExceed"></span>
+            <span class="ClsJcspan">{{DashboardDetails.OnHold}}</span>
+            <span class="SpnJCStatusLable">On Hold</span>
+          </div>
+        </ion-col>
+
+      </ion-row>
+
+      <ion-row style="margin-top: 3%;">
+
+        <ion-col col-4 (click)="JcBtnClick('Completed')">
+          <div class="DivJCStatus" style="background: #DFF2CB;">
+            <span class="ClsJcspan">{{DashboardDetails.Completed}}</span>
+            <span class="SpnJCStatusLable">Completed</span>
+          </div>
+        </ion-col>
+
+        <ion-col col-4 (click)="JcBtnClick('Completed T5 Pending')">
+          <div class="DivJCStatus" style="background: #E6CCE6;">
+            <span class="ClsJcspan">{{DashboardDetails.CompletedT5Pend}}</span>
+            <span class="SpnJCStatusLable">Completed T5 Pending</span>
+          </div>
+        </ion-col>
+
+        <ion-col col-4 (click)="JcBtnClick('Completed T5 Done')">
+          <div class="DivJCStatus" style="background: #99CC99;">
+            <span class="ClsJcspan">{{DashboardDetails.CompletedT5Done}}</span>
+            <span class="SpnJCStatusLable">Completed T5 Done</span>
+          </div>
+        </ion-col>
+
+      </ion-row>
+
+    </ion-grid>
+
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+  <page-footer>
+  </page-footer>
+</ion-footer>

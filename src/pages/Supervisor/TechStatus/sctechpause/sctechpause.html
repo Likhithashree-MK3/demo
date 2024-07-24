@@ -1,0 +1,74 @@
+<ion-header>
+  <page-header></page-header>
+</ion-header>
+
+<ion-content padding style="background-color: #fff;">
+
+  <ion-grid style="margin-bottom: 8vh">
+
+    <!-- Search -->
+    <ion-row>
+      <ion-col col-11 style="border: 1px solid #d3d3d3;border-radius:20px;padding: 5px;">
+        <img src="assets/imgs/search.png" style="width:12px">
+        <input type="text" placeholder="Search" style="border: none;" style="border: none;" [(ngModel)]="SerachText" (keyup)="JCSearch(SerachText)">
+      </ion-col>
+      <ion-col col-1 style="text-align: center;" (click)="JCSortClick()">
+        <img src="assets/imgs/sort.png" style="width:15px;margin-top: 8px;">
+      </ion-col>
+    </ion-row>
+
+    <!-- total count -->
+    <ion-row style="margin-top: 12px;">
+      <h1 style="font-size: 16px;">Pause {{FinalPauseList.length}}</h1>
+    </ion-row>
+
+    <!-- List -->
+    <ion-row style="margin-top:5px;">
+
+      <ion-card *ngFor="let pl of FinalPauseList;let i=index" 
+        style="border-radius: 5px;margin:0;width:100%;margin-bottom:14px;border-left: 5px solid orange;">
+        
+        <ion-grid style="font-size: 13px;font-weight: 500;">
+
+          <ion-row style="padding: 6px;">
+            <ion-col col-11>
+              {{pl.EmployeeName}}
+              <span style="color:#808080;"> {{pl.JobRole}} | {{pl.EmployeeCode}}</span>
+            </ion-col>
+            <ion-col col-1>
+              <img src="assets/imgs/engineer.png" style="width:15px;">
+              <sup style="position: absolute;left: 12px;top: 1px;">{{pl.CompetencyLevel}}</sup>
+            </ion-col>
+          </ion-row>
+
+          <ion-row style="padding: 6px;">
+            <ion-col col-6>
+              {{pl.JCOrderNo}}
+            </ion-col>
+            <ion-col col-6 style="text-align: right;">
+              <span style="color:#808080;text-align: end;left: 15px;">Paused from</span>
+              <span style="color:#000080;font-weight:500;font-size: 14px;text-align: end;">{{pl.AvailableFrom}}
+                Hrs</span>
+            </ion-col>
+          </ion-row>
+
+          <ion-row style="padding: 6px;">
+            <ion-col>
+              {{pl.PauseReason}}
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+
+      </ion-card>
+
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer>
+    <page-footer>
+</page-footer>
+</ion-footer>

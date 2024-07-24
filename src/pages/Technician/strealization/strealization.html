@@ -1,0 +1,209 @@
+<ion-header>
+  <page-header></page-header>
+</ion-header>
+
+<ion-content padding style="background: #fff;">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-10 style="border: 1px solid #d3d3d3;border-radius:20px;padding: 5px;display: flex;flex-wrap: wrap;">
+
+        <img src="assets/imgs/search.png" style="width: 18px;margin-right: 8px;">
+        <ion-input type="text" placeholder="Search" (keyup)="Search($event)" [(ngModel)]="SrchText" style="border: none;margin: 0 !important;"></ion-input>
+      </ion-col>
+      <ion-col col-2 style="text-align: center;">
+        <img src="assets/imgs/sort.png" style="width:15px;margin-top: 8px;" (click)="SortClick()">
+      </ion-col>
+
+    </ion-row>
+    <!-- Filtered -->
+    <ion-row style="margin-top: 12px;">
+      <ion-col col-2>
+        <img src="assets/imgs/Filtered.png" style="height:4.1vh" (click)="presentCheckboxAlert()">
+      </ion-col>
+      <ion-col style="display: flex;flex-wrap: wrap; width:auto">
+        <div *ngIf="filtervalue"
+          style="background: #d3d3d3;padding:7px;padding-right:10px;padding-left:10px;margin-right:5px;margin-bottom: 5px; font-size: 12px;border-radius: 5px;font-weight: 600;">
+          {{Filterdata}} 
+          <!-- <span style="margin-left:8px;" (click)="RemoveFilteredata()">x</span> -->
+        </div>
+        <div *ngIf="daterange" style="display: flex;flex-wrap: wrap;">
+          <input type="date" [min]="minDate" [max]="maxDate" [(ngModel)]="fromDate" (change)="FromDateChange($event)"/>
+          <span style="margin-top: 7px;margin-right:10px;margin-left:10px;">to</span>
+          <input type="date" [min]="minDate" [max]="maxDate" [(ngModel)]="toDate" (change)="ToDateChange($event)"/>
+          <img style="width: 15px;height: 15px;margin-top: 7px;margin-left: 10px;" src="assets/imgs/search.png" (click)="customDateClick()">
+        </div>
+      </ion-col>
+    </ion-row>
+    <!-- Main info -->
+    <ion-row style="margin-top: 12px;">
+      <ion-col col-4 style="font-size: 18px;">Realization</ion-col>
+      <ion-col col-2 style="color:#294785;font-size: 18px;">{{RealizationData.RealizationPerc}}%</ion-col>
+      <ion-col col-1>
+        <img src="assets/imgs/decrease.png" *ngIf="RealizationData.RealizationDiff < 0"  style="width:8px;float:inline-end;margin-top: 0.7vh;">
+        <img src="assets/imgs/increase.png" *ngIf="RealizationData.RealizationDiff > 0"  style="width:12px;float:inline-end;margin-top: 0.7vh;">
+        </ion-col>
+      <ion-col col-1
+        style="color:#e33239;font-size: 13px;font-weight: bold;margin-top: 4px;">{{RealizationData.RealizationDiff}}%</ion-col>
+    </ion-row>
+    <ion-row style="margin-top: 10px;margin-right: 5vh;font-weight: 500;">
+      <ion-col col-2
+        style="font-size: 12px;color:#808080;border-right: 1px solid #808080;text-align: center;">YTD</ion-col>
+      <ion-col col-2
+        style="font-size: 12px;color:#808080;border-right: 1px solid #808080;text-align: center;">LM</ion-col>
+      <ion-col col-2
+        style="font-size: 12px;color:#808080;border-right: 1px solid #808080;text-align: center;">MTD</ion-col>
+      <ion-col col-3 style="font-size: 12px;color:#808080;border-right: 1px solid #808080;text-align: center;">Last 7
+        Days</ion-col>
+      <ion-col col-3 style="font-size: 12px;color:#808080;text-align: center;">Last Day
+        <span style="font-size: 10px !important;
+        font-weight: 400;">({{today}})</span>
+      </ion-col>
+    </ion-row>
+    <ion-row  style="margin-right: 5vh;">
+      <ion-col col-2
+        style="font-size: 14px;color:#294785; border-right: 1px solid #808080;text-align: center;">{{RealizationData.YTD}}%</ion-col>
+      <ion-col col-2
+        style="font-size: 14px;color:#294785;border-right: 1px solid #808080;text-align: center;">{{RealizationData.LM}}%</ion-col>
+      <ion-col col-2
+        style="font-size: 14px;color:#294785;border-right: 1px solid #808080;text-align: center;">{{RealizationData.MTD}}%</ion-col>
+      <ion-col col-3
+        style="font-size: 14px;color:#294785;border-right: 1px solid #808080;text-align: center;">{{RealizationData.Last7Days}}%</ion-col>
+      <ion-col col-3
+        style="font-size: 14px;color:#294785;text-align: center;">{{RealizationData.LastDay}}%</ion-col>
+    </ion-row>
+    <!-- JC -->
+    <!-- <ion-row style="margin-top: 15px;">
+      <ion-col col-4 style="font-size: 12px;color:#808080;">Total Closed JC</ion-col>
+      <ion-col style="font-size: 14px;color:#294785;font-weight: bold;">{{ud.ClosedJC}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 style="font-size: 12px;color:#808080;">Total Hours Billed</ion-col>
+      <ion-col style="font-size: 14px;color:#294785;font-weight: bold;">{{ud.HoursBilled}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 style="font-size: 12px;color:#808080;">Total Hours Worked</ion-col>
+      <ion-col style="font-size: 14px;color:#294785;font-weight: bold;">{{ud.Hoursworked}}</ion-col>
+    </ion-row> -->
+    <ion-row>
+      <ion-col col-4
+        style="text-align: center;padding-right:10px;padding-top:20px;color:#294785;font-size: 16px;">
+        {{RealizationData.InvoicedJCS}}
+      </ion-col>
+      <ion-col col-4
+        style="text-align: center;padding-top:20px;padding-right:10px;color:#294785;font-size: 16px;">
+        {{RealizationData.BilledHours}}
+      </ion-col>
+      <ion-col col-4
+      style="text-align: center;padding-left:10px;padding-top:20px;color:#294785;font-size: 16px;">
+      {{RealizationData.WorkedHours}}
+    </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 style="text-align: center;color:#808080;font-size: 14px;font-weight: 500;padding-right: 10px;">
+        Invoiced JCs
+      </ion-col>
+      <ion-col col-4 style="text-align: center;color:#808080;font-size: 14px;font-weight: 500;padding-right: 10px;">
+        Billed Hours
+      </ion-col>
+      <ion-col col-4 style="text-align: center;color:#808080;font-size: 14px;font-weight: 500;padding-left: 10px;">
+        Worked Hours
+      </ion-col>
+    </ion-row>
+    <ion-row style="text-align: center;margin-top: 10px;">
+      <ion-card>
+        <ion-grid>
+          <ion-row style="padding:12px">
+            <ion-col col-3 style="border-right: 1px solid #808080">
+              <div style="font-size: 14px;
+              color: #294785;font-weight: 500;
+              padding:3px;
+              font-size: 13px;">{{RealizationData.Lessthan25}}</div>
+              <label style="background: red;
+              padding-right: 5px;
+              padding-left: 5px;
+              font-size: 12px;
+              font-weight: 500;
+              border-radius: 5px;">0-25%</label>
+            </ion-col>
+            <ion-col col-3 style="border-right: 1px solid #808080">
+              <div style="font-size: 14px;
+              color: #294785;font-weight: 500;
+              padding:3px;
+              font-size: 13px;">{{RealizationData.Between26to50}}</div>
+              <label style="background: orange;
+              padding-right: 5px;
+              padding-left: 5px;
+              font-size: 12px;
+              font-weight: 500;
+              border-radius: 5px;">26-50%</label>
+            </ion-col>
+            <ion-col col-3 style="border-right: 1px solid #808080">
+              <div style="font-size: 14px;
+              color: #294785;font-weight: 500;
+              padding:3px;
+              font-size: 13px;">{{RealizationData.Between51to75}}</div>
+              <label style="background: yellow;
+              padding-right: 5px;
+              padding-left: 5px;
+              font-size: 12px;
+              font-weight: 500;
+              border-radius: 5px;">51-75%</label>
+            </ion-col>
+            <ion-col col-3>
+              <div style="font-size: 14px;
+              color: #294785;font-weight: 500;
+              padding:3px;
+              font-size: 13px;">{{RealizationData.Morethan75}}</div>
+              <label style="background: green;
+              padding-right: 8px;
+              padding-left: 8px;
+              font-size: 12px;
+              font-weight: 500;
+              color:#fff;
+              border-radius: 5px;">>75%</label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </ion-row>
+    <hr>
+    <!-- List -->
+    <ion-row>
+      <ion-card *ngFor="let rl of RealizationList;let i=index"
+      [ngClass]="{Clsred: rl.Ageing ==3,Clsgreen: rl.Ageing ==1,Clsyellow: (rl.Ageing == 2)}"
+        style="margin:0;border-radius: 5px;margin-left:0;width:100%;margin-bottom:14px;">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-4 style="padding:6px;font-weight: 500;">{{rl.OrderNo}}</ion-col>
+            <ion-col col-2 style="color: #001868;padding:6px;font-weight: 500;right:4vh">|  {{rl.RealizationPerc}}%</ion-col>
+            <ion-col col-1>
+              <img src="assets/imgs/decrease.png" *ngIf="rl.RealizationDiff <0"
+                style="width:1.1vh;margin-top:1vh;">
+              <img src="assets/imgs/increase.png" *ngIf="rl.RealizationDiff > 0"
+                style="width:12px;margin-top:1vh;">
+            </ion-col>
+            <ion-col col-2 style="color:#e33239;font-size: 12px;padding:6px;font-weight: 600;right:3.4vh">
+              {{rl.RealizationDiff < 0 ? removeMinus(rl.RealizationDiff) : rl.RealizationDiff}}%</ion-col>
+            <ion-col col-3 style="font-weight: 500;text-align: end;">
+              <span [ngClass]="{ClsPms: rl.Jobtype == 'PMS',ClsFs: rl.Jobtype == 'FS',ClsRr: rl.Jobtype == 'RR',ClsPdi: rl.Jobtype == 'PDI',ClsAcc: rl.Jobtype == 'Accidental',
+              ClsTechCamp: rl.Jobtype == 'TC',ClsFc: rl.Jobtype == 'FC'}" 
+              style="padding:3px;padding-top:1px;padding-bottom: 0;font-size: 12px;">{{rl.Jobtype}}</span></ion-col>
+          </ion-row>
+          <ion-row style="margin-top:8px;padding:6px">
+            <ion-col col-3 style="font-size: 13px;color:#808080;font-weight: 500;">Billed Hrs</ion-col>
+            <ion-col col-4 style="font-size: 14px;color: #001868">{{rl.BilledHours}} hrs</ion-col>
+            <ion-col col-3 style="font-size: 13px;color:#808080;text-align: end;font-weight: 500">Worked Hrs</ion-col>
+            <ion-col col-2 style="font-size: 14px;;text-align: end;color: #001868">{{rl.WorkedHours}} hrs</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+    <page-footer>
+</page-footer>
+</ion-footer>

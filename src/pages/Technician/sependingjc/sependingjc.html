@@ -1,0 +1,151 @@
+<ion-header>
+  <page-header></page-header>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid *ngFor="let item of JCList;let i = index" id="GrdActivity">
+
+    <div id="DivOrderDetails">
+
+      <ion-grid>
+
+        <ion-row>
+          <ion-col col-5>
+            <span class="SpnLable">Branch Code</span>
+          </ion-col>
+          <ion-col>
+            <span class="SpnColon">:</span>
+          </ion-col>
+          <ion-col col-6>
+            <span class="SpnLableValue">{{item.BranchCode}}</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-5>
+            <span class="SpnLable">Workshop/Location Code</span>
+          </ion-col>
+          <ion-col>
+            <span class="SpnColon">:</span>
+          </ion-col>
+          <ion-col col-6>
+            <span class="SpnLableValue">{{item.WorkshopLocationCode}}</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-5>
+            <span class="SpnLable">Order</span>
+          </ion-col>
+          <ion-col>
+            <span class="SpnColon">:</span>
+          </ion-col>
+          <ion-col col-6>
+            <span class="SpnLableValue">{{item.Order}}</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-5>
+            <span class="SpnLable">Order Type</span>
+          </ion-col>
+          <ion-col>
+            <span class="SpnColon">:</span>
+          </ion-col>
+          <ion-col col-6>
+            <span class="SpnLableValue">{{item.OrderType}}</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-5>
+            <span class="SpnLable">Document Date</span>
+          </ion-col>
+          <ion-col>
+            <span class="SpnColon">:</span>
+          </ion-col>
+          <ion-col col-6>
+            <span class="SpnLableValue">{{item.DocumentDate | date:"dd-MMM-yyyy"}}</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-5>
+            <span class="SpnLable">JC Status</span>
+          </ion-col>
+          <ion-col>
+            <span class="SpnColon">:</span>
+          </ion-col>
+          <ion-col col-6>
+            <span class="SpnLableValue">{{item.StatusName}}</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-5>
+            <span class="SpnLable">Last Start Date</span>
+          </ion-col>
+          <ion-col>
+            <span class="SpnColon">:</span>
+          </ion-col>
+          <ion-col col-6>
+            <span class="SpnLableValue">{{item.JobCardProgressResumeDatetime | date:"dd-MMM-yyyy"}}</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-5>
+            <span class="SpnLable">Last Start Time</span>
+          </ion-col>
+          <ion-col>
+            <span class="SpnColon">:</span>
+          </ion-col>
+          <ion-col col-6>
+            <span class="SpnLableValue">{{item.JobCardProgressResumeDatetime | date:"hh:mm a"}}</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-5>
+            <span class="SpnLable">Stop Time</span>
+          </ion-col>
+          <ion-col>
+            <span class="SpnColon">:</span>
+          </ion-col>
+          <ion-col col-6>
+            <input type="time" class="InputControls" [(ngModel)]="PauseTime" />
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-5>
+            <span class="SpnLable">Pause Reason</span>
+          </ion-col>
+          <ion-col>
+            <span class="SpnColon">:</span>
+          </ion-col>
+          <ion-col col-6>
+            <textarea id="TxtReason" [(ngModel)]="PauseReason"></textarea>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+
+    </div>
+
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="themeblue">
+    <ion-grid>
+      <ion-row>
+        <ion-col col (click)="SubmitClick()">
+          <ion-title style="text-align: center;cursor: pointer;font-size: 1.5rem;">Submit</ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

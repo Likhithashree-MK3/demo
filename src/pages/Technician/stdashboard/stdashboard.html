@@ -1,0 +1,219 @@
+<ion-header>
+  <ion-navbar color="themered" id="DivHeaderTech">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-1 style="display: flex;">
+          <img src="assets/imgs/menus.png" id="IconMenu" menuToggle>
+        </ion-col>
+        <ion-col col-10 style="display: flex;">
+          <ion-title>Welcome {{global.UserDetails[0].Name}}</ion-title>
+        </ion-col>
+        <ion-col col-1 style="display: flex;" (click)="NotificationClick()">
+          <img src="assets/imgs/bell.png" id="IconMenu" style="width:25px">
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-1></ion-col>
+        <ion-col col-11 style="margin-top: -10px;color:#fff;left:12px">
+          <sub class="SpnSub">{{global.UserDetails[0].Designation}}</sub>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color: #fff;">
+
+  <ion-grid style="padding:15px;padding-bottom: 0px;">
+    <ion-row>
+      <ion-col col-2>
+        <img src="assets/imgs/Filtered.png" style="height:4.1vh" (click)="presentCheckboxAlert()">
+      </ion-col>
+      <ion-col style="display: flex;width:auto">
+        <div *ngIf="filtervalue" class="DivFilterLable">
+          {{Filterdata}}
+          <!-- <span style="margin-left:8px;" (click)="RemoveFilteredata()">x</span> -->
+        </div>
+        <!-- <div *ngIf="daterange" style="display: flex;flex-wrap: wrap;">
+          <input type="date" [min]="minDate" [max]="maxDate" [(ngModel)]="fromDate" (change)="FromDateChange($event)" />
+          <span style="margin-top: 7px;margin-right:10px;margin-left:10px;">to</span>
+          <input type="date" [min]="minDate" [max]="maxDate" [(ngModel)]="toDate" (change)="ToDateChange($event)" />
+          <img style="width: 15px;height: 15px;margin-top: 7px;margin-left: 10px;" src="assets/imgs/search.png"
+            (click)="customDateClick()">
+        </div> -->
+        <div *ngIf="daterange" style="display: flex;flex-wrap: wrap;">
+          <input type="date" [min]="minDate" [max]="maxDate" [(ngModel)]="fromDate" (change)="FromDateChange($event)" />
+          <span style="margin-top: 7px;margin-right:10px;margin-left:10px;">From</span>
+
+          <span style="margin-top: 10px;
+          margin-right: 12px;
+          margin-left: -42px;
+          position: relative;
+          top: 3vh;">To</span>
+          <input type="date" [min]="minDate" [max]="maxDate" [(ngModel)]="toDate" (change)="ToDateChange($event)" />
+          <!-- <img style="width: 15px;height: 15px;margin-top: 7px;margin-left: 10px;" src="assets/imgs/search.png"
+            (click)="customDateClick()"> -->
+          <button style="width: 50px;
+            height: 15px;
+            margin-top: 4px;
+            margin-left: 63px;
+            background-color: #083a81;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;" (click)="customDateClick()">Apply</button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Technician My activity-->
+  <ion-slides pager style="height: 50%;">
+
+    <ion-slide>
+      <ion-card class="ClsCard" style="padding:0">
+        <div id="linechart_div"></div>
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card class="ClsCard" style="padding:0">
+        <div id="columnchart_div"></div>
+      </ion-card>
+    </ion-slide>
+
+  </ion-slides>
+
+  <!-- OverallJC status -->
+  <ion-card class="ClsCard" (click)="TypeClick()">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-2>
+          <img src="assets/imgs/Real.png" style="width:40px">
+        </ion-col>
+        <ion-col col-8 style="color:green">
+          Realization <span style="color:#000;font-weight: 600;">{{DashboardCount.RealizationPerc}}%</span>
+        </ion-col>
+        <ion-col col-1>
+          <img src="assets/imgs/decrease.png" *ngIf="DashboardCount.RealizationDiff < 0"
+            style="width:8px;float:inline-end;margin-top: 0.4vh;">
+          <img src="assets/imgs/increase.png" *ngIf="DashboardCount.RealizationDiff > 0"
+            style="width:12px;float:inline-end;margin-top: 0.4vh;">
+        </ion-col>
+        <ion-col col-1>
+          <span style="color:green">{{DashboardCount.RealizationDiff}}%</span>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top:-3vh">
+        <ion-col col-2></ion-col>
+        <ion-col>
+          <meter style="width:96%;height: 13px;" value={{DashboardCount.RealizationPercValue}}></meter>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <!-- Today's head's up -->
+  <!-- <ion-card style="margin-bottom: 30px;"  class="ClsCard">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <h6 style="margin-left: 8px;font-weight: 500;margin-bottom: 10px;font-size: 16px;">Today's Head's Up</h6>
+          <span style="color:#c3c3c3;margin-left: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;display: block;">Space for displaying motivation and achivement details</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card> -->
+
+  <!-- Technician Jc & non-Jc -->
+  <div id="donutchart_div" style="margin-top: -15px;margin-bottom: 30px;"></div>
+  <div id="chart-container"></div>
+  <div>
+    <div>
+      <canvas #halfPieChart id="half-pie-chart"></canvas>
+    </div>
+  </div>
+
+  <!-- work status -->
+  <ion-card class="ClsCard">
+
+    <h6 style="margin-left: 8px;font-weight: bold;margin-bottom: 10px;font-size: 16px;">Work Status</h6>
+
+    <ion-grid style="margin-bottom: 2%;">
+
+      <ion-row>
+
+        <ion-col col-6>
+
+          <div style="display: flex;">
+            <ion-card (click)="WorkStatusClick('YTS')" class="CardTechJCStatus"
+              style="background: #feeeb3;position: relative;">
+              <img class="ImgDashboardCorner" src="assets/imgs/YTSIcon.png">
+              <div class="DivDashboardCenter">
+                <span class="SpnDashboardCount">{{this.DashboardCount.YTS}}</span>
+                <span class="SpnDashboardLable">Yet to Start</span>
+              </div>
+            </ion-card>
+          </div>
+        </ion-col>
+
+        <ion-col col-6>
+
+          <div style="display: flex;">
+            <ion-card (click)="WorkStatusClick('WIP')" class="CardTechJCStatus"
+              style="background: #B3E8FD;position: relative;">
+              <img class="ImgDashboardCorner" src="assets/imgs/InProgressIcon.png">
+              <div class="DivDashboardCenter">
+                <span class="SpnDashboardCount">{{this.DashboardCount.WIP}}</span>
+                <span class="SpnDashboardLable">In Progress</span>
+              </div>
+            </ion-card>
+          </div>
+        </ion-col>
+
+      </ion-row>
+
+      <ion-row style="margin-top: 15px;">
+
+        <ion-col col-6>
+
+          <div style="display: flex;">
+            <ion-card (click)="WorkStatusClick('Paused')" class="CardTechJCStatus"
+              style="background: #FCB4B4;position: relative;">
+              <img class="ImgDashboardCorner" src="assets/imgs/PauseIcon.png">
+              <div class="DivDashboardCenter">
+                <span class="SpnDashboardCount">{{this.DashboardCount.Paused}}</span>
+                <span class="SpnDashboardLable">Paused</span>
+              </div>
+            </ion-card>
+          </div>
+        </ion-col>
+
+        <ion-col col-6>
+
+          <div style="display: flex;">
+            <ion-card (click)="WorkStatusClick('Completed')" class="CardTechJCStatus"
+              style="background: #DFF2CB;position: relative;">
+              <img class="ImgDashboardCorner" src="assets/imgs/CompletedIcon.png">
+              <div class="DivDashboardCenter">
+                <span class="SpnDashboardCount">{{this.DashboardCount.Completed}}</span>
+                <span class="SpnDashboardLable">Completed</span>
+              </div>
+            </ion-card>
+          </div>
+        </ion-col>
+
+      </ion-row>
+
+    </ion-grid>
+
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+  <page-footer>
+  </page-footer>
+</ion-footer>

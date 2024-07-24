@@ -1,0 +1,40 @@
+page-sependingjc {
+
+    #IconMenu {
+        margin: auto;
+        cursor: pointer;
+        font-size: 2.3em;
+        color: white;
+    }
+
+    #DivOrderDetails {
+        margin: 10px;
+        padding: 10px;
+        height: 75vh;
+        overflow: scroll;
+    }
+
+    .SpnLable {
+        color: grey;
+    }
+
+    .SpnLableValue {
+        color: #294785;
+    }
+
+    #DivOrderDetails .row {
+        margin-top: 10px;
+    }
+
+    #TxtReason {
+        width: 100%;
+        border: 1px solid gray;
+        border-radius: 5px;
+        height: 10vh;
+    }
+
+    .InputControls{
+        width: 100%;
+    }
+
+}

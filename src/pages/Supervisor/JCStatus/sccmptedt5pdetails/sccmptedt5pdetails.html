@@ -1,0 +1,154 @@
+<ion-header>
+  <page-header></page-header>
+</ion-header>
+
+<ion-content style="background-color: #fff;">
+
+  <ion-card style="margin-bottom:15px;margin-top:15px;">
+
+    <ion-grid>
+
+      <ion-row style="padding:5px">
+        <ion-col col-10>
+          <span style="font-size: 18px;">Order Details</span>
+        </ion-col>
+        <ion-col col-2 style="text-align: right;">
+          <span class="SpnJobType" [style.borderColor]="SelectedJC.ColorName"
+            *ngIf="SelectedJC.JobType!=''">{{global.JobTypeFormat(SelectedJC.JobType)}}</span>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="padding:5px">
+        <ion-col col-6>
+          <span class="SpnLeftLable">T0</span>
+          <span>{{JobDetails.T0 | date:'dd.MM.yyyy, hh:mma'}}</span>
+        </ion-col>
+        <ion-col col-6 style="text-align: right;">
+          <span class="SpnLeftLable">T1</span>
+          <span>{{JobDetails.T1 | date:'dd.MM.yyyy, hh:mma'}}</span>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="padding:5px">
+        <ion-col col-8>
+          <span class="SpnLeftLable">T2</span>
+          <span>{{JobDetails.T2 | date:'dd.MM.yyyy, hh:mma'}}</span>
+        </ion-col>
+        
+      </ion-row>
+
+      <ion-row style="padding:5px">
+        <ion-col col-7>
+          <span>{{JobDetails.LicensePlateNumber}}</span>
+        </ion-col>
+        <ion-col col-5 style="text-align: right;">
+          <span>{{JobDetails.VehicleModel}}</span>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="padding:5px">
+        <ion-col>
+          <span class="SpnLeftLable">Odo</span>
+          <span>{{global.OdoMeterFormat(JobDetails.KMPerHour)}}</span>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="padding:5px">
+        <ion-col>
+          <span class="SpnLeftLable">EDD</span>
+          <span>{{JobDetails.ExpectedDeliveryDate | date:'dd.MM.yyyy'}}</span>
+        </ion-col>
+        <ion-col col style="text-align: right;">
+          <span class="SpnLeftLable">ETD</span>
+          <span>{{JobDetails.ExpectedDeliveryTime | date:'HH:mm:ss'}} hrs</span>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="padding:5px">
+        <ion-col col-6>
+          <span class="SpnLeftLable">Target</span>
+          <span>{{JobDetails.TargetTime | date:'HH:mm'}} hrs</span>
+        </ion-col>
+        <ion-col col-6 style="text-align: right;">
+          <span class="SpnLeftLable">Actual</span>
+          <span>{{JobDetails.ActualTime | date:'HH:mm'}} hrs</span>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="padding:5px">
+        <ion-col>
+          <span class="SpnLeftLable">SA</span>
+          <span>{{JobDetails.EmployeeName}} | {{JobDetails.ServiceAdviser}}</span>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+  </ion-card>
+
+  <hr>
+
+  <ion-card style="margin-bottom:15px;margin-top:15px;">
+
+    <ion-grid>
+
+      <ion-row style="padding:5px">
+        <ion-col>
+          <span style="font-size: 18px;">Job Details ({{JobsList.length}})</span>
+        </ion-col>
+      </ion-row>
+
+      <ion-grid *ngFor="let j of JobsList" style="padding-bottom: 10px;">
+        <ion-row style="padding:5px">
+          <ion-col col>
+            <span class="SpnLeftLable">Job Type</span>
+            <span>{{j.JCType_Name}}</span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col>
+            <span style="padding: 5px;">{{j.JobDescription}}</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-grid>
+
+  </ion-card>
+
+  <ion-card style="margin-bottom:15px;margin-top:15px;">
+
+    <ion-grid>
+
+      <ion-row style="padding:5px">
+        <ion-col>
+          <span style="font-size: 16px;font-weight: 500;">Technician Details ({{SelectedSEList.length}})</span>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="padding:5px" *ngFor="let t of SelectedSEList">
+        <ion-col col-9>
+          <span>{{t.Name}}</span>
+          <img src="assets/imgs/engineer.png" style="width:20px;display: inline;margin-left: 0.5em;">
+          <span style="position: absolute;top: -5px;">c</span>
+          <span style="margin-left: 1em;">| {{t.EmployeeCode}}</span>
+        </ion-col>
+        <ion-col col-3 style="text-align: right;">
+          <span>{{global.DisplayTimeFormate(t.JobCardWorkedTimeInMinutes)}} Hrs</span>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+  </ion-card>
+
+  <div style="text-align: center;margin-top:5vh;margin-bottom:2vh;">
+    <button (click)="SelectTechnicianClick()" class="BtnTechnicianAdd">REALLOCATE TECHNICIAN(S)</button>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+    <page-footer>
+</page-footer>
+</ion-footer>

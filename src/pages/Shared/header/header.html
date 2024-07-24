@@ -1,0 +1,53 @@
+<!-- <ion-navbar color="themered">
+  <ion-grid>
+    <ion-row>
+      <ion-col col-1 style="display: flex;">
+        <img src="assets/imgs/menus.png" id="IconMenu" menuToggle>
+      </ion-col>
+      <ion-col col-10 style="display: flex;">
+        <ion-title>Welcome {{global.UserDetails[0].Name}}</ion-title>
+      </ion-col>
+      <ion-col col-1 style="display: flex;">
+        <img src="assets/imgs/bell.png" id="IconMenu" style="width:25px">
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-1></ion-col>
+      <ion-col col-11 style="margin-top: -10px;color:#fff;left:12px">
+        <sub>{{global.UserDetails[0].Designation}}</sub>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-navbar> -->
+
+<!-- <ion-navbar>
+
+  <button ion-button menuToggle id="BtnSideMenu" [style.display]="global.MenuHideOrShow" style="background: rgb(2, 189, 240);">
+    <ion-icon name="menu" style="color: white;cursor: pointer;"></ion-icon>
+  </button>
+
+  <button ion-button class="BtnHome" (click)="HomeClick()" [style.display]="global.MenuHideOrShow">
+    <ion-icon name="home" style="color: rgb(2, 189, 240);"></ion-icon>
+  </button>
+
+  <ion-title>{{global.title}}</ion-title>
+
+  <img src="assets/imgs/zuku_logo_orng_blue1.png" id="ImgZukuLogo" />
+
+</ion-navbar> -->
+
+<ion-toolbar color="themered">
+  <ion-grid>
+    <ion-row>
+      <ion-col col-2 style="text-align: center;">
+        <img src="assets/imgs/back.png" style="width:25px" (click)="BackButtonClick()">
+      </ion-col>
+      <ion-col col-9 style="display: flex;">
+        <ion-title>{{global.HeaderTitle}}</ion-title>
+      </ion-col>
+      <ion-col col-1 (click)="NotificationClick()">
+        <img src="assets/imgs/bell.png" style="width:25px">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-toolbar>

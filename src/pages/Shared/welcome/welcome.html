@@ -1,0 +1,21 @@
+<ion-content>
+
+  <img src="assets/imgs/loginbg.png" style="position: absolute;height:100%;width:100%">
+
+  <div id="DivLoginBG">
+
+    <img src="assets/imgs/EicherLogo4.png" id="ImgLoginLogo" />
+
+    <img src="assets/imgs/wplogo.png" style="width: 16%;  margin-left: 42%;margin-top: 5%;" />
+
+    <div style="text-align: center;margin-top: 15%;font-weight: 600;font-size:20px;">Welcome </div>
+
+    <div style="text-align: center;font-weight: 600;font-size: 16px;"> {{this.global.UserDetails[0].Name}} <sub style="font-weight:400;">({{this.global.UserDetails[0].BranchCode}})</sub></div>
+
+    <h6 style="text-align: center;font-size: 12px;">You have logged into last on {{this.global.UserDetails[0].LastLoginDate | date:"dd MMM yyyy"}} at {{this.global.UserDetails[0].LastLoginDate | date:"h:mm a"}}</h6>
+
+    <img src="assets/imgs/right.png" class="center" (click)="NextClick()">
+
+  </div>
+
+</ion-content>

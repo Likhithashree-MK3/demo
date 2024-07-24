@@ -1,0 +1,64 @@
+<ion-menu [content]="content" id="MyMenu" auto-hide="false">
+
+  <ion-content>
+
+    <img src="assets/imgs/loginbg.png" style="position: absolute;height:100%;width:100%">
+
+    <div id="DivLoginBG">
+
+      <img src="assets/imgs/EicherLogo2.png" id="ImgLoginLogo" />
+
+      <ion-grid style="background-color: #F2F2F2;position: relative;padding:10px;margin-top:35px;
+      width: 90%;border-radius: 10px;" *ngIf="global.UserDetails.length>0">
+        <ion-row>
+          <ion-col style="margin-top:-4vh">
+            <img [src]="global.UserDetails[0].ProfilePhotoPath" style="width:40%;border-radius: 100%;"
+              *ngIf="global.UserDetails[0].ProfilePhotoPath!=null">
+            <!-- <input type="file" id="FileAttchments" (change)="FileChangeMethod($event)" /> -->
+          </ion-col>
+          <ion-col style="text-align: end;cursor: pointer;" menuClose (click)="ProfilePencilClick()">
+            <img src="assets/imgs/pencil.png">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col style="padding: 0.5rem;font-weight: 600;">
+            {{global.UserDetails[0].Name}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col style="padding: 0.5rem;font-size: 12px;">
+            {{global.UserDetails[0].Designation}} | {{global.UserDetails[0].Code}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col style="padding: 0.5rem;font-size: 12px;">
+            Plant {{global.UserDetails[0].BranchCode}}
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+
+    </div>
+
+    <ion-footer>
+      <ion-grid style="padding: 10px;">
+        <ion-row style="margin-left: 15px;" (click)="LogoutClick()">
+          <ion-col col-1>
+            <img src="assets/imgs/logout.png" style="height: 15px;width:15px">
+          </ion-col>
+          <ion-col>
+            <span style="font-weight: 600;">Logout</span>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-left: 15px;">
+          <ion-col>
+            <sub style="color:#c3c3c3">Version 1.0.0 (Prod)</sub>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-footer>
+  </ion-content>
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content></ion-nav>

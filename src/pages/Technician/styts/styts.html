@@ -1,0 +1,104 @@
+<ion-header>
+  <page-header></page-header>
+</ion-header>
+
+<ion-content padding style="background-color: #fff;">
+
+  <ion-grid>
+
+    <!-- Search -->
+    <ion-row>
+      <ion-col col-11 style="border: 1px solid #d3d3d3;border-radius:20px;padding: 5px;display: flex;flex-wrap: wrap;">
+        <img src="assets/imgs/search.png" style="width: 18px;margin-right: 8px;">
+        <ion-input type="text" placeholder="Search" (keyup)="Search($event)" [(ngModel)]="SrchText"
+          style="border: none;margin: 0 !important;"></ion-input>
+        <!-- <input type="text" placeholder="Search" style="border: none;"> -->
+      </ion-col>
+      <ion-col col-1 style="text-align: center;">
+        <img src="assets/imgs/sort.png" style="width:15px;margin-top: 8px;" (click)="SortClick()">
+      </ion-col>
+    </ion-row>
+
+    <!-- total count -->
+    <ion-row style="margin-top: 12px;">
+      <h1 style="font-size: 16px;">Yet to Start {{YtsList.length}}</h1>
+    </ion-row>
+
+    <!-- List -->
+    <ion-row style="margin-top:5px;">
+
+      <ion-card class="DivCard" *ngFor="let pl of YtsList;let i=index"
+        [ngClass]="{Clsred: pl.AgeningSlab ==3,Clsgreen: pl.AgeningSlab ==1,Clsyellow: (pl.AgeningSlab == 2)}">
+
+        <ion-grid style="font-size: 13px;font-weight: 500;">
+
+          <ion-row>
+
+            <ion-col col-8 style="padding:5px">
+              <span class="SpnJCVehicle">
+                <span style="color:#808080;padding-right: 5px;">JC</span>
+                {{pl.OrderNo}} | {{pl.VehicleNo}}
+              </span>
+            </ion-col>
+
+            <ion-col col-1 style="padding:6px;text-align: end;">
+              <img src="assets/imgs/exchange.png" *ngIf="pl.IsRecursive" style="width:12px">
+            </ion-col>
+
+            <ion-col col-1 style="padding:6px;text-align: end;">
+              <img src="assets/imgs/time.png" *ngIf="pl.IsAppointmentDone" style="width:12px">
+            </ion-col>
+
+            <ion-col col-2 style="display: flex;" *ngIf="pl.Jobtype!=''">
+              <span class="SpnJobType" [style.borderColor]="pl.ColorName">
+                {{global.JobTypeFormat(pl.Jobtype)}}
+              </span>
+            </ion-col>
+
+          </ion-row>
+
+          <ion-row style="padding:5px;padding-top:0px">
+            <ion-col style="font-size: 13px;">
+              <span>{{pl.CustomerName}}</span>
+              <span *ngIf="pl.IsKAMCustomer!=''">( <span style="color: orange;">{{pl.IsKAMCustomer}}</span>)</span>
+            </ion-col>
+          </ion-row>
+
+          <ion-row style="padding:5px;padding-top:0px">
+            <ion-col col-8 style="font-size: 13px;">
+              <span style="display:inline-block;padding-right: 5px;color:#808080">SA</span>
+              <span>{{pl.ServiceAdvisor}}</span>
+            </ion-col>
+            <ion-col col-4 style="font-size: 13px;">
+              <span style="display:inline-block;padding-right: 10px;color:#808080">T1</span>
+              <span>{{pl.T1 | date:'dd.MM.yyyy'}}</span>
+            </ion-col>
+          </ion-row>
+
+          <ion-row style="padding:5px;padding-top:0px">
+            <ion-col style="font-size: 13px;">
+              <span style="display:inline-block;padding-right: 10px;color:#808080">EDD</span>
+              <span>{{pl.EDD | date:'dd MMM yyyy'}} | {{pl.ETD}}</span>
+            </ion-col>
+          </ion-row>
+
+          <ion-row style="margin:1vh;">
+            <ion-col style="text-align: center;">
+              <button (click)="StartClick(pl)" class="BtnStart">Start</button>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+
+      </ion-card>
+
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer>
+    <page-footer>
+</page-footer>
+</ion-footer>

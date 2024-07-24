@@ -1,0 +1,135 @@
+<ion-header>
+  <ion-navbar color="themered">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-2 style="text-align: center;">
+          <img src="assets/imgs/back.png" style="width:25px" (click)="BackClick()">
+        </ion-col>
+        <ion-col col-9>
+          <ion-title>Add Technician</ion-title>
+        </ion-col>
+        <ion-col col-1>
+          <img src="assets/imgs/bell.png" style="width:25px">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color: #fff;" padding>
+
+  <!-- Search -->
+  <ion-row>
+    <ion-col col-12 style="border: 1px solid #d3d3d3;border-radius:20px;padding: 5px;">
+      <img src="assets/imgs/search.png" style="width:12px">
+      <input type="text" placeholder="Search" style="border: none;" [(ngModel)]="SerachText"
+        (keyup)="SESearch(SerachText)">
+    </ion-col>
+  </ion-row>
+
+  <div style="height: 73vh;overflow-y: scroll;margin-top:20px;">
+
+    <ion-card style="margin: 0px;width: 100%;">
+
+      <ion-grid>
+  
+        <ion-row style="padding:5px">
+          <ion-col>
+            <span style="font-size: 18px;font-weight: 500;">List of Technicians</span>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row style="padding:5px;" *ngFor="let se of FinalSEList" (click)="SEListClick(se)">
+  
+          <ion-grid style="border-bottom: 1px solid lightgray;">
+  
+            <ion-row>
+              <ion-col col-10>
+                <ion-row style="padding: 5px;">
+                  <ion-col col style="font-weight: bold;">
+                    <span>{{se.Name}}</span>
+                    <span style="padding-right: 10px;">({{se.JCCount}})</span>
+                    <img src="assets/imgs/engineer.png" style="width: 1em;margin-top: 5px;display: inline;">
+                    <span style="position: absolute;font-size: 10px;">{{se.CompetencyCode}}</span>
+                  </ion-col>
+                </ion-row>
+                <ion-row style="padding: 5px;">
+                  <ion-col col>
+                    <span style="color:#808080;font-weight: 500;font-size: 12px;">{{se.Designation}} | {{se.Code}}</span>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col col-2 style="display: flex;">
+                <input type="checkbox" style="margin: auto;" [(ngModel)]="se.IsSelected">
+              </ion-col>
+            </ion-row>
+  
+          </ion-grid>
+  
+        </ion-row>
+  
+      </ion-grid>
+  
+    </ion-card>
+  
+    <hr>
+  
+    <ion-card style="margin: 0px;margin-top:20px;width: 100%" *ngIf="GetTechnicianCount()>0">
+  
+      <ion-grid>
+  
+        <ion-row style="padding:5px">
+          <ion-col>
+            <span style="font-size: 18px;font-weight: 500;">Selected Technician</span>
+          </ion-col>
+        </ion-row>
+  
+        <div *ngFor="let se of FinalSEList">
+  
+          <ion-row style="padding:5px;" *ngIf="se.IsSelected">
+  
+            <ion-grid style="border-bottom: 1px solid lightgray;">
+              <ion-row>
+                <ion-col col-10>
+                  <ion-row style="padding: 5px;">
+                    <ion-col col style="font-weight: bold;">
+                      <span>{{se.Name}}</span>
+                      <span style="padding-right: 10px;">({{se.JCCount}})</span>
+                      <img src="assets/imgs/engineer.png" style="width: 1em;margin-top: 5px;display: inline;">
+                      <span style="position: absolute;font-size: 10px;">{{se.CompetencyCode}}</span>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row style="padding: 5px;">
+                    <ion-col col>
+                      <span style="color:#808080;font-weight: 500;font-size: 12px;">{{se.Designation}} |
+                        {{se.Code}}</span>
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+                <ion-col col-2 style="display: flex;" (click)="SEListClick(se)">
+                  <img src="assets/imgs/delete.png" style="margin: auto;width: 25%;">
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+  
+          </ion-row>
+  
+        </div>
+  
+      </ion-grid>
+  
+    </ion-card>
+  
+    <div style="text-align: center;margin-top:3vh;margin-bottom:20px;">
+      <button (click)="SaveClick()" class="BtnTechnicianAdd">
+        SAVE
+      </button>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <page-footer>
+  </page-footer>
+</ion-footer>

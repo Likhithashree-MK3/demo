@@ -1,0 +1,70 @@
+page-stdashboard {
+
+    #DivHeaderTech .toolbar-background {
+        background-image: url("../assets/imgs/HeaderBG.png") !important;
+        background-size: 100% 100% !important;
+        background-repeat: no-repeat !important;
+    }
+
+    #IconMenu {
+        margin: auto;
+        cursor: pointer;
+        font-size: 2.3em;
+        color: white;
+    }
+
+    .ClsCard {
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .alert-md .alert-radio-group,
+    .alert-md .alert-checkbox-group {
+        position: relative;
+        overflow: auto;
+        max-height: 240px;
+        border-top: none !important;
+        border-bottom: none !important;
+        background: #fff !important;
+
+    }
+
+    .CardTechJCStatus {
+        width: 80%;
+        height: 12vh;
+        padding: 10px;
+        border-radius: 5px;
+        margin: auto;
+        cursor: pointer;
+        display: flex;
+    }
+
+    .ImgDashboardCorner {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 15%;
+    }
+
+    .DivDashboardCenter{
+        margin: auto;
+    }
+
+    .SpnDashboardCount{
+        font-size: 8vw;
+        display: block;
+        text-align: center;
+        color: #001868;
+        font-weight: bold;
+    }
+
+    .SpnDashboardLable{
+        display: block;
+        text-align: center;
+        font-size: 4.1vw;
+        color: #625f54;
+        margin-top: 5%;
+        font-weight: bold;
+    }
+
+}

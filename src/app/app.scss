@@ -1,0 +1,309 @@
+$EicherThemeColorRed: #e33239;
+$EicherThemeColorBlue: #294785;
+
+.content {
+    background: #f7f4f4;
+    font-family: 'HermesFB', sans-serif;
+}
+
+.toolbar-title {
+    font-size: 5vw !important;
+}
+
+.SpnSub {
+    font-size: 3.5vw !important;
+}
+
+.grid,
+.row,
+.col {
+    padding: 0px;
+}
+
+.alert-md .alert-head {
+    text-align: center;
+    // background: $EicherThemeColorBlue;
+    background: #fff;
+    color: #3E3E3E;
+    font-weight: bold;
+    padding-bottom: 0;
+}
+
+.alert-md .alert-title {
+    font-size: 16px !important;
+}
+
+.alert-md .alert-sub-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #3E3E3E;
+}
+
+.alert-message {
+    text-align: center !important;
+    margin-top: 15px;
+    background: #fff !important;
+    padding-top: 10px !important;
+    margin-top: 0px !important;
+
+}
+
+.BtnOnePopup {
+    background: $EicherThemeColorBlue !important;
+    color: white !important;
+    width: 100%;
+}
+
+.BtnTwoPopup {
+    background: $EicherThemeColorBlue !important;
+    color: white !important;
+    width: 45%;
+}
+
+.BtnCancelPopup {
+    background: $EicherThemeColorRed !important;
+    color: white !important;
+    width: 38%;
+    border-radius: 8px !important;
+    margin-bottom: 15px !important;
+}
+
+.BtnResetPopup {
+    background: #D4D4D4 !important;
+    color: black !important;
+    width: 38%;
+    border-radius: 8px !important;
+    margin-bottom: 15px !important;
+}
+
+.BtnYesPopup {
+    background: $EicherThemeColorBlue !important;
+    color: white !important;
+    width: 38%;
+    border-radius: 8px !important;
+    margin-bottom: 15px !important;
+    margin-right: 4.5vh !important;
+}
+
+.BtnOkPopup {
+    background: $EicherThemeColorBlue !important;
+    color: white !important;
+    width: 30%;
+    border-radius: 8px !important;
+    margin-bottom: 15px !important;
+    right: 10vh;
+}
+
+.alert-md .alert-message {
+    background: #fff !important;
+}
+
+.alert-md .alert-button .button-inner {
+    justify-content: center !important;
+}
+
+.segment-md .segment-button.activated,
+.segment-md .segment-button.segment-activated {
+    border-color: $EicherThemeColorRed;
+}
+
+.segment-md .segment-button {
+    color: $EicherThemeColorRed;
+}
+
+.alert-md .alert-radio-group {
+    background: #fff !important;
+    border: none !important;
+}
+
+.alert-md .alert-button-group {
+    background: #fff !important;
+    border: none !important;
+}
+
+.InputControls {
+    width: 90%;
+}
+
+#ImgLoginLogo {
+    width: 70%;
+    margin-left: 7%;
+    margin-top: 7%;
+}
+
+#DivLoginBG {
+    width: 100%;
+    height: 100vh;
+    // background: #83b6e9;
+    position: relative;
+}
+
+.wrap {
+    height: 60vh;
+    // width: 60vh;
+    // border: 1px solid #aaa;
+    margin: 10px;
+    display: flex;
+}
+
+.wrap span {
+    align-self: flex-end;
+}
+
+.Clsyellow {
+    border-left: 5px solid yellow;
+}
+
+.Clsred {
+    border-left: 5px solid red;
+}
+
+.Clsgreen {
+    border-left: 5px solid green;
+}
+
+.Clsorange {
+    border-left: 5px solid orange;
+}
+
+.SpnJobType {
+    border: 2px solid;
+    margin: auto;
+    margin-right: 0px;
+    border-radius: 3px;
+    display: block;
+    width: 80%;
+    text-align: center;
+    font-size: 3.3vw;
+    text-transform: uppercase;
+}
+
+.DivFilterStatus {
+    padding: 4.1px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid;
+    height: 4.1vh;
+}
+
+.SpnLeftLable {
+    color: #808080;
+    padding-right: 5px;
+}
+
+.BtnTechnicianAdd {
+    background: #001868;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.DivCard {
+    border-radius: 5px;
+    margin: 0px;
+    margin-top: 3vh !important;
+    width: 100%;
+}
+
+.BtnStart {
+    background-color: #008000;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    width: 22%;
+    font-size: 13px;
+}
+
+.BtnPause {
+    background-color: #e33239;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    width: 50%;
+    font-size: 13px;
+    margin-right: 5px
+}
+
+.BtnComplete {
+    background-color: #294785;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    width: 50%;
+    font-size: 13px;
+    margin-left: 5px
+}
+
+.DivCardList {
+    border-radius: 5px;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    margin-bottom: 14px;
+}
+
+.DivFilterLable {
+    background: #d3d3d3;
+    padding: 7px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-right: 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    font-weight: 600;
+    height: 4.1vh;
+    cursor: pointer;
+}
+
+.SpnJCVehicle,
+.SpnCustomerName {
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+.text-input-md {
+    margin: 0;
+}
+
+/* ===================================================== CUSTOME ACTION SHEET ====================================================== */
+
+.DivActionSheet {
+    border-radius: 2px;
+    width: calc(100% - 20px);
+    font-size: 1.4rem;
+    background: #fff;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    z-index: 999;
+    animation: fadeIn 0.5s;
+}
+
+.DivActionSheet .item-inner {
+    border: 0px !important;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+//=======================================================================================================================================

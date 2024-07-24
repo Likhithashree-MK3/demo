@@ -1,0 +1,142 @@
+page-notifications {
+  .badge-md {
+    border-radius: 14px;
+    color: #fff;
+    background-color: #274a86;
+    font-size: 10px;
+  }
+
+  ion-badge {
+    padding: 7px 6px;
+    text-align: center;
+    display: inline-block;
+    min-width: 10px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    line-height: 1;
+    white-space: nowrap;
+    vertical-align: baseline;
+    position: absolute;
+    margin-top: -8px;
+    margin-left: 5px;
+  }
+
+  .HighMidLog {
+    width: 85%;
+    padding: 2px;
+    border-radius: 5px;
+  }
+
+  .searchbar-md .searchbar-input {
+    padding: 6px 55px;
+    border-radius: 2px;
+    background-position: left 8px center;
+    height: auto;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 3rem;
+    color: #141414;
+    background-color: #fff;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 20px;
+    height: 40px;
+  }
+
+  .button-outline-md {
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    color: black;
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    height: 25px;
+    border-radius: 5px;
+    width: 90%;
+  }
+
+  // ========================================================== ALERT ==========================================================//
+  .alert-md .alert-wrapper {
+    border-radius: 2px;
+    max-width: 280px;
+    background-color: #fafafa;
+    -webkit-box-shadow: 0 16px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 16px 20px rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  .alert-md .alert-button {
+    text-align: right;
+    text-align: end;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: white;
+    // background-color: red;
+    margin: 0 8px 0 0;
+    padding: 10px;
+    border-radius: 8px;
+    left: -16%;
+    width: 32%;
+  }
+
+  .buttonCss {
+
+    button.alert-button:nth-child(1) {
+      background: red;
+    }
+
+    button.alert-button:nth-child(2) {
+      background: #294785;
+    }
+  }
+
+  // ========================================================== FILTERING ===================================================== //
+
+  #customActionSheet {
+    position: absolute;
+    top: 9%;
+    z-index: 999999;
+  }
+
+  .animated-background {
+    transition: background-color 0.5s ease;
+    /* Adjust the duration and timing function as needed */
+  }
+
+  /* ===================================================== CRAD STYLES ======================================================== */
+
+  .card-md {
+    margin: 10px;
+    border-radius: 2px;
+    width: calc(100% - 20px);
+    font-size: 1.4rem;
+    background: #fff;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    position: absolute;
+    bottom: -10px;
+    width: 100%;
+    left: -10px;
+  }
+
+  .fade-in-text {
+    animation: fadeIn 0.5s;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+
+    to {
+      opacity: 1
+    }
+  }
+
+}

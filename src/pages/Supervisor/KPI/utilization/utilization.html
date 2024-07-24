@@ -1,0 +1,250 @@
+<ion-header>
+  <page-header></page-header>
+</ion-header>
+
+<ion-content style="background: #fff;">
+
+  <ion-grid style="padding-left: 10px;padding-right: 10px;">
+
+    <ion-row style="padding: 10px;">
+      <ion-col col-11 style="border: 1px solid #d3d3d3;border-radius:20px;padding: 5px;">
+        <img src="assets/imgs/search.png" style="width:12px">
+        <input type="text" placeholder="Search" [(ngModel)]="EmployeeSearchText" style="border: none;"
+          (keyup)="EmployeeSearch(EmployeeSearchText)">
+      </ion-col>
+      <ion-col col style="text-align: center;" (click)="EmployeeSortClick()">
+        <img src="assets/imgs/sort.png" style="width:15px;margin-top: 8px;">
+      </ion-col>
+    </ion-row>
+
+    <div style="height: 78.7vh;overflow-y: scroll;">
+      <!-- Filtered -->
+      <ion-grid>
+        <ion-row style="margin-bottom: 10px;padding: 10px;">
+          <ion-col col-2>
+            <img src="assets/imgs/Filtered.png" style="height:4.1vh" (click)="FilterClick()">
+          </ion-col>
+          <ion-col style="display: flex;width:auto">
+            <div
+              class="DivFilterLable">
+              {{SelectedFilterName}}
+              <!-- <span style="margin-left:8px;" (click)="RemoveFilteredata(i)">x</span> -->
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="SelectedFilter==6">
+          <ion-col col-5 style="display: flex;">
+            <input type="date" class="CustomeDate" [min]="Last6Month" [max]="TodaysDate" [(ngModel)]="SearchFromDate"
+              style="margin: auto;">
+          </ion-col>
+          <ion-col col-5 style="display: flex;">
+            <input type="date" class="CustomeDate" [min]="Last6Month" [max]="TodaysDate" [(ngModel)]="SearchToDate"
+              style="margin: auto;">
+          </ion-col>
+          <ion-col col-2 style="display: flex;">
+            <ion-icon ios="ios-search" md="md-search" style="margin: auto;font-size: 2em;cursor: pointer;"
+              (click)="SearchClick()"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <!-- Main info -->
+      <ion-row style="margin-top: 12px;">
+
+        <ion-col col style="font-size: 18px;font-weight: bold;">Utilization</ion-col>
+
+        <ion-col col-3
+          style="color:#294785;font-size: 18px;font-weight: bold;">{{UtilizationDetails.UtilizationPerc}}%</ion-col>
+
+        <ion-col col-1>
+          <img src="assets/imgs/decrease.png" *ngIf="UtilizationDetails.UtilizationDiff<0"
+            style="width:8px;float:inline-end;margin-top: 0.4vh;height: 12px;">
+          <img src="assets/imgs/increase.png" *ngIf="UtilizationDetails.UtilizationDiff>0"
+            style="width:12px;float:inline-end;margin-top: 0.4vh;">
+        </ion-col>
+
+        <ion-col col-1
+          [style.color]="(UtilizationDetails.UtilizationDiff<0)?'red':'green'">{{UtilizationDetails.UtilizationDiff}}
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-top: 10px;margin-right: 5vh;font-weight: 500;">
+        <ion-col col-2
+          style="font-size: 12px;color:#808080;border-right: 1px solid #808080;text-align: center;">YTD</ion-col>
+        <ion-col col-2
+          style="font-size: 12px;color:#808080;border-right: 1px solid #808080;text-align: center;">LM</ion-col>
+        <ion-col col-2
+          style="font-size: 12px;color:#808080;border-right: 1px solid #808080;text-align: center;">MTD</ion-col>
+        <ion-col col-3 style="font-size: 12px;color:#808080;border-right: 1px solid #808080;text-align: center;">Last 7
+          Days</ion-col>
+        <ion-col col-3 style="font-size: 12px;color:#808080;text-align: center;">Last Day<br />
+          <span style="font-size: 10px !important;
+        font-weight: 400;">{{LastDay | date:'dd.MM.yyyy'}}</span>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-right: 5vh;">
+        <ion-col col-2
+          style="font-size: 14px;color:#294785;font-weight: bold; border-right: 1px solid #808080;text-align: center;">{{UtilizationDetails.YTD}}</ion-col>
+        <ion-col col-2
+          style="font-size: 14px;color:#294785;font-weight: bold;border-right: 1px solid #808080;text-align: center;">{{UtilizationDetails.LM}}</ion-col>
+        <ion-col col-2
+          style="font-size: 14px;color:#294785;font-weight: bold;border-right: 1px solid #808080;text-align: center;">{{UtilizationDetails.MTD}}</ion-col>
+        <ion-col col-3
+          style="font-size: 14px;color:#294785;font-weight: bold;border-right: 1px solid #808080;text-align: center;">{{UtilizationDetails.Last7Days}}</ion-col>
+        <ion-col col-3
+          style="font-size: 14px;color:#294785;font-weight: bold;text-align: center;">{{UtilizationDetails.LastDay}}</ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-6
+          style="text-align: end;padding-right:20px;padding-top:20px;color:#294785;font-size: 16px;font-weight: bold;">
+          {{UtilizationDetails.WorkedHours}}
+        </ion-col>
+        <ion-col col-6
+          style="text-align: start;padding-left:20px;padding-top:20px;color:#294785;font-size: 16px;font-weight: bold;">
+          {{UtilizationDetails.AvailableHours}}
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-bottom: 10px;">
+        <ion-col col-6 style="text-align: end;color:#808080;font-size: 14px;font-weight: 500;padding-right: 10px;">
+          Worked Hours
+        </ion-col>
+        <ion-col col-6 style="text-align: start;color:#808080;font-size: 14px;font-weight: 500;padding-left: 10px;">
+          Available Hours
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="text-align: center;">
+        <ion-card>
+          <ion-grid>
+            <ion-row style="padding:12px">
+              <ion-col col-3 style="border-right: 1px solid #808080">
+                <div style="font-size: 14px;
+              color: #294785;font-weight: 500;
+              padding:3px;
+              font-size: 13px;">{{UtilizationDetails.Lessthan25}}</div>
+                <label style="background: red;padding: 2px;
+              font-size: 12px;
+              font-weight: 500;
+              border-radius: 5px;">0-25%</label>
+              </ion-col>
+              <ion-col col-3 style="border-right: 1px solid #808080">
+                <div style="font-size: 14px;
+              color: #294785;font-weight: 500;
+              padding:3px;
+              font-size: 13px;">{{UtilizationDetails.Between26to50}}</div>
+                <label style="background: orange;padding: 2px;
+              font-size: 12px;
+              font-weight: 500;
+              border-radius: 5px;">26-50%</label>
+              </ion-col>
+              <ion-col col-3 style="border-right: 1px solid #808080">
+                <div style="font-size: 14px;
+              color: #294785;font-weight: 500;
+              padding:3px;
+              font-size: 13px;">{{UtilizationDetails.Between51to75}}</div>
+                <label style="background: yellow;padding: 2px;
+              font-size: 12px;
+              font-weight: 500;
+              border-radius: 5px;">51-75%</label>
+              </ion-col>
+              <ion-col col-3>
+                <div style="font-size: 14px;
+              color: #294785;font-weight: 500;
+              padding:3px;
+              font-size: 13px;">{{UtilizationDetails.Morethan75}}</div>
+                <label style="background: green;padding: 2px;
+              font-size: 12px;
+              font-weight: 500;
+              color:#fff;
+              border-radius: 5px;">76-100%</label>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </ion-row>
+      <hr>
+
+      <!-- list -->
+      <ion-row style="margin-top: 10px;">
+        <ion-card *ngFor="let e of FinalEmployeeListUtilization;let i=index"
+          style="margin:0;padding: 10px;border-radius: 5px;margin-left:0;width:100%;margin-bottom:14px;"
+          (click)="DownArrowClick(i,e)"
+          [ngClass]="{Clsred: e.Ageing==1,Clsorange: e.Ageing==2,Clsyellow: e.Ageing==3,Clsgreen: e.Ageing==4}">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-6 style="font-weight: 600;">
+                {{e.EmployeeName}}
+              </ion-col>
+              <ion-col col-1 style="text-align: -moz-right;">
+                <img src="assets/imgs/engineer.png" style="width:15px">
+              </ion-col>
+              <ion-col col-1 style="right:10px">
+                <sup style="position: absolute;top: 0px;left: 10px;">{{e.CompetencyLevel}}</sup>
+              </ion-col>
+              <ion-col col-1 style="font-size: 14px;color:#294785;font-weight: bold;">
+                {{e.UtilizationPerc}} %
+              </ion-col>
+              <ion-col col-1>
+                <img src="assets/imgs/decrease.png" *ngIf="e.UtilizationDiff<0"
+                  style="width:8px;float:inline-end;height: 12px;">
+                <img src="assets/imgs/increase.png" *ngIf="e.UtilizationDiff>0" style="width:12px;float:inline-end;">
+              </ion-col>
+              <ion-col col-1 [style.color]="(e.UtilizationDiff<0)?'red':'green'"
+                style="font-size: 12px;font-weight: bold">
+                {{e.UtilizationDiff}}
+              </ion-col>
+              <ion-col col-1>
+                <img
+                  [src]="(isExpanded && clickedindex == i) ? 'assets/imgs/arrow-up.png' : 'assets/imgs/down-arrow.png'"
+                  style="width:10px">
+              </ion-col>
+            </ion-row>
+            <ion-row style="font-size: 12px;margin-top: 5px;">
+              <ion-col col>
+                <span
+                  style="border-right: 1px solid #808080;color:#808080;margin-right: 5px;padding-right: 10px;">{{e.JobRole}}</span>
+                <span>{{e.EmployeeCode}}</span>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngIf="clickedindex == i && isExpanded"
+              style="margin-top: 10px;margin-right: 5vh;text-align: center;font-weight: 500;">
+              <ion-col col-2 style="font-size: 12px;color:#808080;border-right: 1px solid #808080;">YTD</ion-col>
+              <ion-col col-2 style="font-size: 12px;color:#808080;border-right: 1px solid #808080;">LM</ion-col>
+              <ion-col col-2 style="font-size: 12px;color:#808080;border-right: 1px solid #808080;">MTD</ion-col>
+              <ion-col col-3
+                style="font-size: 12px;color:#808080;border-right: 1px solid #808080;text-align: center;">Last 7
+                days</ion-col>
+              <ion-col col-3 style="font-size: 12px;color:#808080;text-align: center;">Last Day
+                <span style="font-size: 10px !important;
+              font-weight: 400;">{{LastDay | date:'dd.MM.yyyy'}}</span>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngIf="clickedindex == i && isExpanded" style="margin-right: 5vh;text-align: center;">
+              <ion-col col-2
+                style="font-size: 14px;color:#294785;font-weight: bold; border-right: 1px solid #808080;">{{EmployeeDetailsUtilization.YTD}}</ion-col>
+              <ion-col col-2
+                style="font-size: 14px;color:#294785;font-weight: bold; border-right: 1px solid #808080;">{{EmployeeDetailsUtilization.LM}}</ion-col>
+              <ion-col col-2
+                style="font-size: 14px;color:#294785;font-weight: bold; border-right: 1px solid #808080;">{{EmployeeDetailsUtilization.MTD}}</ion-col>
+              <ion-col col-3
+                style="font-size: 14px;color:#294785;font-weight: bold;border-right: 1px solid #808080;text-align: center;">{{EmployeeDetailsUtilization.Last7Days}}</ion-col>
+              <ion-col col-3
+                style="font-size: 14px;color:#294785;font-weight: bold;text-align: center;">{{EmployeeDetailsUtilization.LastDay}}</ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </ion-row>
+
+    </div>
+
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer>
+    <page-footer>
+</page-footer>
+</ion-footer>
